@@ -1,4 +1,4 @@
-module github.com/VixsTy/probable-giggle/tools
+module github.com/VixsTy/calculator/tools
 
 go 1.12
 

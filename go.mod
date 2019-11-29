@@ -1,4 +1,4 @@
-module github.com/VixsTy/probable-giggle
+module github.com/VixsTy/calculator
 
 go 1.12
 
@@ -7,6 +7,7 @@ require (
 	github.com/common-nighthawk/go-figure v0.0.0-20190529165535-67e0ed34491a
 	github.com/fatih/color v1.7.0
 	github.com/magefile/mage v1.9.0
+	github.com/onsi/gomega v1.7.1
 	github.com/urfave/cli/v2 v2.0.0
 	golang.org/x/crypto v0.0.0-20191128160524-b544559bb6d1
 )
