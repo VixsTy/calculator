@@ -27,7 +27,7 @@ type Operator struct {
 
 // Operators is a map of all supported operator
 var Operators = map[token.Token]*Operator{
-	token.ADD: &Operator{
+	token.ADD: {
 		Lit:           "+",
 		Tok:           token.ADD,
 		Precedence:    2,
@@ -37,7 +37,7 @@ var Operators = map[token.Token]*Operator{
 			return args[1] + args[0]
 		},
 	},
-	token.SUB: &Operator{
+	token.SUB: {
 		Lit:           "-",
 		Tok:           token.SUB,
 		Precedence:    2,
@@ -47,7 +47,7 @@ var Operators = map[token.Token]*Operator{
 			return args[1] - args[0]
 		},
 	},
-	token.MUL: &Operator{
+	token.MUL: {
 		Lit:           "*",
 		Tok:           token.MUL,
 		Precedence:    3,
@@ -57,7 +57,7 @@ var Operators = map[token.Token]*Operator{
 			return args[1] * args[0]
 		},
 	},
-	token.QUO: &Operator{
+	token.QUO: {
 		Lit:           "/",
 		Tok:           token.QUO,
 		Precedence:    3,
@@ -67,7 +67,7 @@ var Operators = map[token.Token]*Operator{
 			return args[1] / args[0]
 		},
 	},
-	token.REM: &Operator{
+	token.REM: {
 		Lit:           "%",
 		Tok:           token.REM,
 		Precedence:    3,
@@ -77,7 +77,7 @@ var Operators = map[token.Token]*Operator{
 			return math.Mod(args[1], args[0])
 		},
 	},
-	token.XOR: &Operator{
+	token.XOR: {
 		Lit:           "^",
 		Tok:           token.XOR,
 		Precedence:    4,

@@ -2,6 +2,7 @@ package tokenizer
 
 import (
 	"go/token"
+
 	"golang.org/x/xerrors"
 )
 

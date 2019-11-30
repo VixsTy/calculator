@@ -33,8 +33,8 @@ func (s *GoScanner) Scan() (string, token.Token, error) {
 	switch tok {
 	case token.INT, token.FLOAT:
 		return lit, tok, nil
-	case token.EOF:
-		return "", tok, nil
+	case token.EOF, token.SEMICOLON:
+		return "", token.EOF, nil
 	case token.LPAREN, token.RPAREN, token.ADD, token.SUB, token.MUL, token.QUO, token.REM, token.XOR:
 		return tok.String(), tok, nil
 	default:

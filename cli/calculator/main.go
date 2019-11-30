@@ -14,7 +14,7 @@ func main() {
 		Usage:   "Bring some sparkles in your life",
 		Version: "v0.0.1",
 		Authors: []*cli.Author{
-			&cli.Author{
+			{
 				Name:  "Kevin LARQUEMIN",
 				Email: "kevin.larquemin@gmail.com",
 			},

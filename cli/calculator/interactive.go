@@ -15,7 +15,12 @@ func interactive() {
 	if err != nil {
 		panic(err)
 	}
-	defer terminal.Restore(0, oldState)
+	defer func() {
+		err := terminal.Restore(0, oldState)
+		if err != nil {
+			fmt.Println(err)
+		}
+	}()
 
 	term := terminal.NewTerminal(os.Stdin, "> ")
 	term.AutoCompleteCallback = func(line string, pos int, key rune) (newLine string, newPos int, ok bool) {
@@ -43,15 +48,23 @@ func interactive() {
 		if len(text) > 0 {
 			calc := shuntingyard.NewShuntingYard()
 			result := calc.Calc(text)
-			term.Write([]byte(fmt.Sprintln(result)))
+			_, err = term.Write([]byte(fmt.Sprintln(result)))
+			if err != nil {
+				fmt.Println(err)
+			}
 		}
 
 	}
-
 }
 
 func exit(state *terminal.State) {
-	terminal.Restore(0, state)
-	fmt.Println()
+	err := terminal.Restore(0, state)
+	if err != nil {
+		fmt.Println(err)
+	}
+	_, err = fmt.Println()
+	if err != nil {
+		panic(err)
+	}
 	os.Exit(0)
 }

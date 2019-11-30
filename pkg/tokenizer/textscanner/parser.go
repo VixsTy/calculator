@@ -6,6 +6,7 @@ import (
 	"github.com/asaskevich/govalidator"
 )
 
+//nolint:gocyclo // TODO: rework the cyclomatic complexity
 func parse(lit string) token.Token {
 	switch {
 	case govalidator.IsInt(lit):
@@ -37,5 +38,4 @@ func parse(lit string) token.Token {
 	default:
 		return token.ILLEGAL
 	}
-
 }

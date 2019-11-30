@@ -35,6 +35,7 @@ func (s *ShuntingYard) Calc(input string) string {
 	return strconv.FormatFloat(result, 'G', -1, 64)
 }
 
+//nolint:gocyclo // TODO: rework the cyclomatic complexity
 func (s *ShuntingYard) buildRPN() {
 	// while there are tokens to be read do:
 	//     read a token.
@@ -87,10 +88,9 @@ func (s *ShuntingYard) buildRPN() {
 			//         /* if the stack runs out without finding a left paren, then there are mismatched parentheses. */
 			if stackTok == nil {
 				panic(xerrors.Errorf("parenthesis mismatch"))
-			} else {
-				//         if there is a left paren at the top of the operator stack, then:
-				//             pop the operator from the operator stack and discard it
 			}
+			//         if there is a left paren at the top of the operator stack, then:
+			//             pop the operator from the operator stack and discard it
 		}
 	}
 	if err != nil {
@@ -119,7 +119,6 @@ func isPriorOperator(tok, stackTok token.Token) bool {
 }
 
 func (s *ShuntingYard) resolveRPN() float64 {
-
 	var stack lifo.Stack
 
 	t := s.output.Pop()
