@@ -6,6 +6,7 @@ import (
 	"os"
 	"strings"
 
+	shuntingyard "github.com/VixsTy/calculator/pkg/calculator/shunting-yard"
 	"golang.org/x/crypto/ssh/terminal"
 )
 
@@ -38,6 +39,13 @@ func interactive() {
 		if text == "exit" || text == "quit" {
 			break
 		}
+
+		if len(text) > 0 {
+			calc := shuntingyard.NewShuntingYard()
+			result := calc.Calc(text)
+			term.Write([]byte(fmt.Sprintln(result)))
+		}
+
 	}
 
 }

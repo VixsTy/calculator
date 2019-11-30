@@ -3,7 +3,6 @@ package goscanner
 import (
 	"go/scanner"
 	"go/token"
-	"io"
 
 	"github.com/VixsTy/calculator/pkg/tokenizer"
 )
@@ -27,14 +26,18 @@ func (s *GoScanner) Init(input string) {
 	s.parser.Init(file, src, nil, 0)
 }
 
-// Scan forward in the token list and return the token or and io.EOF if it's the end of the string
-func (s *GoScanner) Scan() (string, error) {
+// Scan forward in the token list and return the token literal, the token type and an error if it occur
+// end of list is notify by token.EOF token type
+func (s *GoScanner) Scan() (string, token.Token, error) {
 	_, tok, lit := s.parser.Scan()
 	switch tok {
+	case token.INT, token.FLOAT:
+		return lit, tok, nil
 	case token.EOF:
-		return "", io.EOF
+		return "", tok, nil
 	case token.LPAREN, token.RPAREN, token.ADD, token.SUB, token.MUL, token.QUO, token.REM, token.XOR:
-		return tok.String(), nil
+		return tok.String(), tok, nil
+	default:
+		return "", token.ILLEGAL, tokenizer.UnrecognizedToken
 	}
-	return lit, nil
 }
