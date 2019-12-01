@@ -1,3 +1,4 @@
+// Package operator have a bundle of code describing operator of arithmetics expression
 package operator
 
 import (

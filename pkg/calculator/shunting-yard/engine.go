@@ -1,3 +1,4 @@
+// Package shuntingyard have a bundle of code helping in the resolution of arithmetics expression by applying the Shunting-yard algorithm
 package shuntingyard
 
 import (
@@ -45,12 +46,7 @@ func (s *ShuntingYard) buildRPN() {
 		switch tok {
 		case token.INT, token.FLOAT:
 			//         push it to the output queue.
-			s.output.Push(&node.Node{
-				Tok: tok,
-				Lit: lit,
-			})
-			//     if the token is a function then:
-			//         push it onto the operator stack
+			s.output.Push(&node.Node{Tok: tok, Lit: lit})
 			//     if the token is an operator, then:
 		case token.ADD, token.SUB, token.MUL, token.QUO, token.REM, token.XOR:
 			//         while ((there is a function at the top of the operator stack)
@@ -66,17 +62,11 @@ func (s *ShuntingYard) buildRPN() {
 				s.operator.Push(stackTok)
 			}
 			//         push it onto the operator stack.
-			s.operator.Push(&node.Node{
-				Tok: tok,
-				Lit: lit,
-			})
+			s.operator.Push(&node.Node{Tok: tok, Lit: lit})
 			//     if the token is a left paren (i.e. "("), then:
 		case token.LPAREN:
 			//         push it onto the operator stack.
-			s.operator.Push(&node.Node{
-				Tok: tok,
-				Lit: lit,
-			})
+			s.operator.Push(&node.Node{Tok: tok, Lit: lit})
 			//     if the token is a right paren (i.e. ")"), then:
 		case token.RPAREN:
 			//         while the operator at the top of the operator stack is not a left paren:
@@ -89,8 +79,6 @@ func (s *ShuntingYard) buildRPN() {
 			if stackTok == nil {
 				panic(xerrors.Errorf("parenthesis mismatch"))
 			}
-			//         if there is a left paren at the top of the operator stack, then:
-			//             pop the operator from the operator stack and discard it
 		}
 	}
 	if err != nil {
@@ -98,8 +86,7 @@ func (s *ShuntingYard) buildRPN() {
 	}
 
 	// after while loop, if operator stack not null, pop everything to output queue
-	stackTok := s.operator.Pop()
-	for ; stackTok != nil; stackTok = s.operator.Pop() {
+	for stackTok := s.operator.Pop(); stackTok != nil; stackTok = s.operator.Pop() {
 		s.output.Push(stackTok)
 	}
 }

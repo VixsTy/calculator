@@ -1,3 +1,4 @@
+// Package tokenizer have a bundle of code for lexical analysis and syntaxical analysis
 package tokenizer
 
 import (

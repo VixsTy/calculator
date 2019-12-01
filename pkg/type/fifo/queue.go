@@ -1,3 +1,4 @@
+// Package fifo implement a FIFO Queue data structure
 package fifo
 
 import "github.com/VixsTy/calculator/pkg/type/node"
@@ -21,8 +22,10 @@ func (s *Queue) Pop() *node.Node {
 		s.queue[0] = nil
 		s.queue = s.queue[1:]
 		s.n--
+
 		return v
 	}
+
 	return nil
 }
 

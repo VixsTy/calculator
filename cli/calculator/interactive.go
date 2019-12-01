@@ -53,7 +53,6 @@ func interactive() {
 				fmt.Println(err)
 			}
 		}
-
 	}
 }
 

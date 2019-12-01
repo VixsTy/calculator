@@ -1,3 +1,4 @@
+// Package goscanner have a bundle of code for lexical analysis and syntaxical analysis using the core go/scanner
 package goscanner
 
 import (

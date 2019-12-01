@@ -1,3 +1,4 @@
+// Package textscanner have a bundle of code for lexical analysis and syntaxical analysis using the core text/scanner
 package textscanner
 
 import (

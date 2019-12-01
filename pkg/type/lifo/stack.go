@@ -1,3 +1,4 @@
+// Package lifo implement a LIFO Stack data structure
 package lifo
 
 import (
@@ -23,8 +24,10 @@ func (s *Stack) Pop() *node.Node {
 		v := s.stack[s.n]
 		s.stack[s.n] = nil
 		s.stack = s.stack[:s.n]
+
 		return v
 	}
+
 	return nil
 }
 
