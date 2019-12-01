@@ -3,7 +3,7 @@
 # Check https://circleci.com/docs/2.0/language-go/ for more details
 version: 2
 jobs:
-  
+
   build:
     docker:
       - image: circleci/golang:1.12
@@ -14,12 +14,29 @@ jobs:
         name: Build source image
         command: |
           docker build -t $CIRCLE_PROJECT_REPONAME:$(git rev-parse --short HEAD) .
+    - run:
+        name: Save image
+        command: |
+          mkdir -p /tmp/build/docker/
+          docker save -o /tmp/build/docker/$CIRCLE_PROJECT_REPONAME-$(git rev-parse --short HEAD) $CIRCLE_PROJECT_REPONAME:$(git rev-parse --short HEAD)
+          ls -lah /tmp/build/docker/
+    - persist_to_workspace:
+          root: /tmp/build
+          paths:
+            - docker/*
+
   push:
     docker:
       - image: circleci/golang:1.12
     steps:
     - checkout
     - setup_remote_docker
+    - attach_workspace:
+          at: /tmp/build
+    - run:
+        name: Save image
+        command: |
+          docker load -i /tmp/build/docker/$CIRCLE_PROJECT_REPONAME-$(git rev-parse --short HEAD)
     - run: 
         name: DockerHub Login
         command: |
