@@ -27,6 +27,28 @@ A simple command line calculator.
 
 ## Usage
 
+```
+NAME:
+   calculator - Bring some sparkles in your life
+
+USAGE:
+   calculator [global options] command [command options] [arguments...]
+
+VERSION:
+   v0.0.1
+
+AUTHOR:
+   Kevin LARQUEMIN <kevin.larquemin@gmail.com>
+
+COMMANDS:
+   help, h  Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --interactive, -i  start an interactive calculator (default: false)
+   --help, -h         show help (default: false)
+   --version, -v      print the version (default: false)
+```
+
 ### Go get
 
 ```
