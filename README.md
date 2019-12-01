@@ -14,6 +14,7 @@ A simple command line calculator.
 - `/` for the division
 - `%` for the modulus
 - `^` for the exponent
+- `(` and `)` for priority and group operation
 
 ## TODO List
 
