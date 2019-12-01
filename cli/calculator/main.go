@@ -2,7 +2,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -24,7 +23,7 @@ func main() {
 			if c.Bool("interactive") {
 				interactive()
 			} else {
-				fmt.Println("boom! I say!")
+				inline()
 			}
 			return nil
 		},

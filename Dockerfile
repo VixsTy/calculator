@@ -9,7 +9,7 @@ FROM golang:1.12 as tools
 RUN set -eux; \
     apt-get update -y && \
     apt-get install -y apt-utils upx
-WORKDIR /src
+WORKDIR /tmp/src/calculator
 # Force go modules
 ENV GO111MODULE=on
 COPY tools tools
@@ -55,7 +55,7 @@ LABEL \
     org.label-schema.schema-version="1.0" \
     org.zenithar.licence="MIT"
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-COPY --from=build /src/bin/* /app/bin
+COPY --from=build /tmp/src/calculator/bin/* /app/bin
 ENTRYPOINT [ "/app/bin" ]
 CMD ["--help"]
 
